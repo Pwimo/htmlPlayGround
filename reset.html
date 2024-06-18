@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Reset Timer</title>
+</head>
+<body>
+
+<button onclick="resetTimer()">Reset Timer</button>
+
+<script>
+function resetTimer() {
+  // Set the current timestamp as the start date in local storage
+  localStorage.setItem('startDate', Date.now());
+  alert("Timer has been reset!");
+}
+</script>
+
+</body>
+</html>
