@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    /* CSS to center the text and apply dark theme */
+    body, html {
+      height: 100%;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      background-color: #121212; /* Dark background color */
+      color: #ffffff; /* Light text color */
+      text-align: center;
+    }
+    #title {
+      font-size: 3em; /* Adjust the font size for the title */
+      margin-bottom: 20px; /* Add some space between the title and the timer */
+    }
+    #demo {
+      font-size: 2em; /* Adjust the font size for the timer */
+    }
+  </style>
+</head>
+<body>
+
+<p id="title">Days since MapleSEA crash</p>
+<p id="demo"></p>
+
+<script>
+// Define separate variables for the day, month, year, and time
+var day = 5;
+var month = 1; // January (1-12)
+var year = 2023;
+var time = "15:37:25";
+
+// Mapping of month numbers to month names
+var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+// Convert the integer month to the corresponding month name
+var monthName = monthNames[month - 1];
+
+// Combine the variables into a single date string
+var startDateStr = `${monthName} ${day}, ${year} ${time}`;
+
+// Parse the date string to get the timestamp
+var startDate = new Date(startDateStr).getTime();
+
+// Function to update the timer
+function updateTimer() {
+  // Get the current date and time
+  var now = new Date().getTime();
+
+  // Find the distance between now and the start date
+  var distance = now - startDate;
+
+  // Time calculations for days, hours, minutes, and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  // Display the result in the element with id="demo"
+  document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+  + minutes + "m " + seconds + "s ";
+}
+
+// Call the function to display the timer immediately
+updateTimer();
+
+// Update the timer every 1 second
+var x = setInterval(updateTimer, 1000);
+</script>
+
+</body>
+</html>
